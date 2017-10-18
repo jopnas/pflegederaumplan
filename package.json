@@ -1,0 +1,48 @@
+{
+  "name": "pflegeDeRaumplan",
+  "productName": "pflege.de Raumplan",
+  "description": "pflege.de Raumplan",
+  "version": "0.3.3",
+  "main": "main.js",
+  "author": "pflege.de",
+  "scripts": {
+    "pack": "build --dir",
+    "dist": "build"
+  },
+  "devDependencies": {
+    "electron": "^1.7.9",
+    "electron-builder": "^19.37.2",
+    "wine": "^1.8.6"
+  },
+  "build": {
+    "appId": "pflegederaumplan.utilities",
+    "mac": {
+      "category": "public.app-category.utilities",
+      "icon": "build/icon.icns"
+    },
+    "win": {},
+    "dmg": {
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    }
+  },
+  "publish": {
+    "provider": "generic",
+    "url": "https://bitbucket.org/"
+  },
+  "dependencies": {
+    "dialogs": "^1.1.17",
+    "electron-config": "^0.2.1",
+    "jquery": "^3.2.1"
+  }
+}

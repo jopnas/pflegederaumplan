@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>pflege.de Raumplan</title>
+    <link href="assets/fontello/css/fontello.css" type="text/css" rel="stylesheet"></link>
+    <link href="assets/css/base.css" type="text/css" rel="stylesheet"></link>
+    <script>
+      window.$ = window.jQuery = require('jquery');
+    </script>
+    <script type="text/javascript" src="assets/js/base.js"></script>
+  </head>
+  <body class="locked">
+    <nav>
+      <a href="#reset" class="nav-button" title="Reset">&#xe80b;</a>
+      <a href="#export" class="nav-button" title="Speichern">&#xe80a;</a>
+      <a href="#import" class="nav-button" title="Öffnen">&#xf115;</a>
+
+      <a href="#settings" class="nav-button">&#xe80c;</a>
+      <a href="#lock" class="nav-button"></a>
+
+      <div class="search">
+        <ul class="employer-list"></ul>
+        <input type="text" class="search-input">
+        <a href="#search" class="search-button">&#xe808;</a>
+      </div>
+
+    </nav>
+
+    <div class="map">
+      <img src="assets/img/raumplan_logo.png" width="1001" class="map-image">
+      <div class="marker-holder"></div>
+    </div>
+
+    <div class="note"></div>
+
+    <div class="templates">
+      <div class="marker marker-people" data-type="marker-people">&#xe809;<span class="info">Bitte ändern</span></div>
+      <div class="marker marker-konfi" data-type="marker-konfi">&#xe804;<span class="info">Bitte ändern</span></div>
+      <div class="marker marker-sani" data-type="marker-sani">&#xe807;<span class="info">bitte ändern</span></div>
+      <div class="marker marker-cust" data-type="marker-cust">&#xe801;<span class="info">bitte ändern</span></div>
+      <div class="marker marker-desk" data-type="marker-desk" data-rotation="0" title="Shift + Mausrad zum Drehen (+ Alt in 45° Schritten)"><div class="marker-desk-graphic"></div><span class="info">Tisch</span></div>
+
+      <div class="marker-context">
+        <a href="#addPic" class="marker-context-tool">&#xe80d;</a>
+        <a href="#removePic" class="marker-context-tool">&#xe80d;<span class="xed">&#xe80e;</span></a>
+        <a href="#edit" class="marker-context-tool">&#xe806;</a>
+        <a href="#delete" class="marker-context-tool">&#xe805;</a>
+      </div>
+
+      <div class="tools-context">
+        <a href="#addPeople" class="tool" title="Person">+ <span class="icon icon-people">&#xe809;</span></a>
+        <a href="#addKonfi" class="tool" title="Kommunikation">+ <span class="icon icon-konfi">&#xe804;</span></a>
+        <a href="#addSani" class="tool" title="Ver-/Entsorgen">+ <span class="icon icon-sani">&#xe807;</span></a>
+        <a href="#addCust" class="tool" title="Anderes">+ <span class="icon icon-cust">&#xe801;</span></a>
+        <a href="#addDesk" class="tool" title="Schreibtisch">+ <span class="icon icon-desk"></span></a>
+      </div>
+
+      <div class="message-popup"><div class="message-content"></div></div>
+    </div>
+
+    <!-- Layer -->
+    <div class="layer-base">
+      <div class="layer-fog"></div>
+
+      <!-- Settings -->
+      <div class="layer layer-settings">
+        <h2>Einstellungen</h2>
+        <div class="setting">
+          <label><input type="radio" name="unlocked-on-start" value="0"> Gesichert bei Programmstart</label>
+          <label><input type="radio" name="unlocked-on-start" value="1"> Ungesichert bei Programmstart</label>
+          <label><input type="radio" name="unlocked-on-start" value="2"> Letzte Einstellung merken</label>
+        </div>
+
+        <div class="settings-buttons">
+          <button type="button" name="cancel">Schließen</button>
+          <button type="button" name="save">Speichern</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Splashscreen -->
+    <div class="splashscreen">
+        <div class="spinner"></div>
+        <div class="version"></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,595 @@
+// compileCompressed: ../base.css
+
+* {
+  box-sizing: border-box;
+  -webkit-user-select: none;
+}
+
+::selection {
+  background: #84285A;
+  color: #DFBBD7;
+}
+
+html {
+  display: block;
+  position: relative;
+  width: 1024px;
+}
+
+body {
+  display: block;
+  position: relative;
+  margin: 0;
+  font-family: sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #fff;
+  overflow-x: hidden;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background-color: #fff;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.4);
+  z-index: 3;
+
+  .nav-button {
+    display: inline-block;
+    font-family: 'fontello';
+    text-decoration: none;
+    color: #000;
+    border: 1px solid #000;
+    text-align: center;
+    margin: 3px 0 0 10px;
+    width: 24px;
+    height: 24px;
+    line-height: 20px;
+    padding: 2px;
+    border-radius: 2px;
+    box-shadow: inset 0 0 5px 0 rgba(0,0,0,0.5);
+
+    &:hover {
+      box-shadow: inset 0 0 5px 0 rgba(0,0,0,1);
+    }
+  }
+}
+
+a[href="#settings"]{
+  position: absolute;
+  right: 260px;
+}
+
+a[href="#lock"]{
+  position: absolute;
+  right: 220px;
+}
+
+a[href="#lock"]:after{
+  font-family: 'fontello';
+  content: '\e802';
+}
+
+body.locked a[href="#lock"]:after{
+  font-family: 'fontello';
+  content: '\e803';
+}
+
+.search {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 30px;
+  width: 200px;
+  border: 1px solid #000;
+  border-width: 0 0 0 1px;
+  background-color: #eee;
+}
+
+ul.employer-list {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: -1px;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  background-color: #fff;
+  border: 1px solid #000;
+  border-top-width: 0;
+  border-right-width: 0;
+  z-index: 99;
+
+  li {
+    padding: 5px 10px;
+    cursor: pointer;
+    -webkit-user-select: none;
+
+    &:hover {
+      background-color: #aaa;
+      color: #444;
+    }
+  }
+}
+
+.search-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: block;
+  border: none;
+  height: 100%;
+  outline: none;
+  padding: 0 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+  background-color: transparent;
+}
+
+.search-button {
+  font-family: 'fontello';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 35px;
+  text-align: center;
+  line-height: 30px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #D394BF;
+  border-left: 1px solid #000;
+}
+
+.templates {
+  display: none;
+}
+
+.map {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+img.map-image {
+  display: block;
+  width: 1001px;
+  height: auto;
+}
+
+.marker-holder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.marker-context,
+.tools-context {
+  font-family: sans-serif;
+  //position: absolute;
+  position: fixed;
+  display: inline-block;
+  border: 1px solid #000;
+  border-radius: 4px;
+  background-color: #fff;
+  z-index: 3;
+  overflow: hidden;
+  box-shadow: 0 0 4px 0 rgba(0,0,0,0.5);
+}
+
+.marker-context a,
+.tools-context a {
+  position: relative;
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  padding: 5px 10px;
+  color: #000;
+  text-decoration: none;
+  border-top: 1px solid #000;
+
+  .xed {
+    position: absolute;
+    display: block;
+    color: #c44;
+    top: 50%;
+    left: 50%;
+    font-size: 18px;
+    margin-top: -5px;
+    margin-left: -5px;
+    pointer-events: none;
+  }
+
+  .icon-desk {
+      width: 15px;
+      height: 25px;
+  }
+}
+
+.marker-context a {
+  font-family: 'fontello';
+}
+
+.marker-context a:first-child,
+.tools-context a:first-child {
+  border-top: 0 none;
+}
+
+.marker-context a:hover,
+.tools-context a:hover {
+  background-color: #666;
+  color: #fff;
+}
+
+.marker {
+  font-family: 'fontello';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 20px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  cursor: move;
+  box-shadow: 0 0 4px 0 rgba(0,0,0,0.5);
+  font-size: 12px;
+  color: #fff;
+  text-align: center;
+  line-height: 20px;
+  font-weight: normal;
+  z-index: 1;
+
+  body.rotate-mode & {
+    cursor: alias;
+  }
+}
+
+body.locked .marker {
+  cursor: default;
+}
+
+.marker.found {
+  animation: pulse 1s infinite;
+}
+
+.marker .info {
+  display: none;
+  position: absolute;
+  width: 120px;
+  left: 50%;
+  margin-left: -60px;
+  bottom: 100%;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background-color: rgba(0,0,0,0.9);
+  font-family: sans-serif;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #fff;
+  box-sizing: border-box;
+
+  .marker-image {
+    display: inline-block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.marker .info:before {
+  content: '';
+  position: absolute;
+  display: block;
+  top: 100%;
+  left: 50%;
+  margin-left: -10px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid #fff;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+
+.marker .info:after {
+  content: '';
+  position: absolute;
+  display: block;
+  top: 100%;
+  left: 50%;
+  margin-top: -1px;
+  margin-left: -9px;
+  width: 0;
+  height: 0;
+  border-top: 7px solid #000;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+}
+
+.marker:hover {
+  z-index: 2;
+}
+
+.marker:not(.marker-desk):hover .info {
+  display: block;
+}
+
+.marker.move .info {
+  display: none;
+}
+
+.marker.new {
+  top: 50%;
+  left: 50%;
+}
+
+.icon {
+  font-family: 'fontello';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 20px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  box-shadow: 0 0 4px 0 rgba(0,0,0,0.5);
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  line-height: 20px;
+  font-weight: normal;
+  pointer-events: none;
+}
+
+.icon-people,
+.marker-people {
+  background-color: #080;
+}
+
+.icon-konfi,
+.marker-konfi {
+  background-color: #990;
+}
+
+.icon-sani,
+.marker-sani {
+  background-color: #00a;
+}
+
+.icon-cust,
+.marker-cust {
+  background-color: #666;
+}
+
+.icon-desk {
+  border-radius: 1px;
+  border: 1px solid #000;
+  background-color: #eee;
+  width: 20px;
+  height: 35px;
+}
+
+.marker-desk {
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+  border-radius: 0;
+
+  .marker-desk-graphic {
+    position: absolute;
+    top: calc(50% - 19px);
+    left: calc(50% - 10px);
+    border-radius: 1px;
+    border: 1px solid #000;
+    background-color: #eee;
+    width: 22px;
+    height: 40px;
+    transform-origin: center;
+    pointer-events: none;
+  }
+}
+
+
+.wave {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #000;
+  border-radius: 20px;
+  box-shadow: inset 0 0 100px 0 #000;
+  opacity: 1;
+  pointer-events: none;
+  transition: all linear;
+  transition-duration: 1s;
+  z-index: 10;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.splashscreen {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #fff url('../img/logo.png') no-repeat center center scroll;
+    z-index: 4;
+}
+
+.splashscreen .spinner {
+    position: fixed;
+    width: 180px;
+    height: 180px;
+    top: 50%;
+    left: 50%;
+    margin-top: -90px;
+    margin-left: -90px;
+    x-border: 4px solid #f00;
+    border-radius: 180px;
+    animation: spinnerAni 1s infinite;
+    animation-timing-function: linear;
+}
+
+.splashscreen .spinner:before {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -3px;
+    width: 6px;
+    height: 6px;
+    border-radius: 6px;
+    background-color: #cf87b6;
+}
+
+.splashscreen .spinner:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -3px;
+    width: 6px;
+    height: 6px;
+    border-radius: 6px;
+    background-color: #cf87b6;
+}
+
+.splashscreen .version {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+/* Layer */
+.layer-fog {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.6);
+    z-index: 10;
+}
+
+.layer {
+  display: none;
+  position: fixed;
+  top: 50px;
+  right: 50px;
+  bottom: 50px;
+  left: 50px;
+  background-color: #fff;
+  box-shadow: 0 0 10px 0 rgba(255,255,255,0.5);
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.layer-settings {
+  padding: 10px;
+
+  h2 {
+    margin-top: 0;
+  }
+
+  label {
+    cursor: pointer;
+    display: block;
+    padding-bottom: 10px;
+
+    input {
+      cursor: pointer;
+    }
+  }
+
+  .settings-buttons {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    overflow: hidden;
+
+    button {
+      display: inline-block;
+      -webkit-appearance: none;
+
+      text-align: center;
+      background-color: #fff;
+      box-shadow: inset 0 0 5px 0 rgba(0,0,0,0.5);
+      color: #000;
+      border: 1px solid #000;
+      border-radius: 2px;
+      padding: 5px;
+      outline: none !important;
+      cursor: pointer;
+
+      &:active {
+        background-color: #ddd;
+      }
+
+      &[name="save"]{
+        float: right;
+      }
+    }
+  }
+}
+
+.message-popup {
+  position: fixed;
+  top: 30px;
+  left: calc(50% - 150px);
+  width: 300px;
+  border: 1px solid #000;
+  border-width: 0 1px 1px 1px;
+  border-radius: 0 0 4px 4px;
+  background-color: #872A5D;
+  font-size: 18px;
+  font-weight: bold;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
+  color: #DFBBD7;
+  z-index: 2;
+  text-align: center;
+  -webkit-user-select: none;
+  cursor: default;
+  height: 0;
+  overflow: hidden;
+  transition: height 300ms ease-out;
+
+  .message-content {
+    padding: 10px;
+  }
+}
+
+/* Animations */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes spinnerAni {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(359deg); }
+}
