@@ -1,7 +1,13 @@
 const {app, BrowserWindow, Menu} = require('electron')
 const path = require('path')
 const url = require('url')
-const autoUpdater = require("electron-updater").autoUpdater
+const log = require('electron-log')
+const {autoUpdater} = require("electron-updater")
+const isDev = require('electron-is-dev')
+
+autoUpdater.logger = log
+autoUpdater.logger.transports.file.level = 'info'
+log.info('App starting...')
 
 // Menu
 // noch nix
@@ -26,7 +32,7 @@ function createWindow () {
   }))
 
   // Open the DevTools.
-  //win.webContents.openDevTools()
+  win.webContents.openDevTools()
 
   // Emitted when the window is closed.
   win.on('closed', () => {
@@ -58,6 +64,53 @@ app.on('activate', () => {
     createWindow()
   }
 })
+
+function sendStatus(text) {
+  log.info(text);
+  win.webContents.send('message', text);
+}
+
+if(!isDev){
+  //-------------------------------------------------------------------
+  // Auto updates
+  //
+  // For details about these events, see the Wiki:
+  // https://github.com/electron-userland/electron-builder/wiki/Auto-Update#events
+  //-------------------------------------------------------------------
+  autoUpdater.on('checking-for-update', () => {
+    sendStatus('Checking for update...');
+    alert('Checking for update...');
+  })
+  autoUpdater.on('update-available', (ev, info) => {
+    sendStatus('Update available.');
+    alert('Update available.');
+  })
+  autoUpdater.on('update-not-available', (ev, info) => {
+    sendStatus('Update not available.');
+    alert('Update not available.');
+  })
+  autoUpdater.on('error', (ev, err) => {
+    sendStatus('Error in auto-updater.');
+    alert('Error in auto-updater.');
+  })
+  autoUpdater.on('download-progress', (ev, progressObj) => {
+    sendStatus('Download progress...');
+    alert('Download progress... '+progressObj);
+    log.info('progressObj', progressObj);
+  })
+  autoUpdater.on('update-downloaded', (ev, info) => {
+    sendStatus('Update downloaded.  Will quit and install in 5 seconds.');
+    alert('Update downloaded.  Will quit and install in 5 seconds.');
+    // Wait 5 seconds, then quit and install
+    setTimeout(function() {
+      autoUpdater.quitAndInstall();  
+    }, 5000)
+  })
+  // Wait a second for the window to exist before checking for updates.
+  setTimeout(function() {
+    autoUpdater.checkForUpdates()  
+  }, 1000)
+}
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here

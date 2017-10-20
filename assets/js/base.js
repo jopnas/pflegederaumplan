@@ -513,6 +513,7 @@ $(function(){
         }
       }).ready(function(){
         config.set('settings', appSettings);
+        base.showMessage("Einstellungen gespeichert");
       });
     },
 

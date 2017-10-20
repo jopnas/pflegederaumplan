@@ -2,7 +2,7 @@
   "name": "pflegeDeRaumplan",
   "productName": "pflege.de Raumplan",
   "description": "pflege.de Raumplan",
-  "version": "0.3.3",
+  "version": "0.3.5",
   "main": "main.js",
   "author": "pflege.de",
   "scripts": {
@@ -34,15 +34,21 @@
           "path": "/Applications"
         }
       ]
-    }
-  },
-  "publish": {
-    "provider": "generic",
-    "url": "https://bitbucket.org/"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "jopnas",
+        "repo": "pflegederaumplan"
+      }
+    ]
   },
   "dependencies": {
     "dialogs": "^1.1.17",
     "electron-config": "^0.2.1",
+    "electron-is-dev": "^0.3.0",
+    "electron-log": "^2.2.9",
+    "electron-updater": "^2.13.0",
     "jquery": "^3.2.1"
   }
 }
