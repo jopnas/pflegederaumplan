@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "electron": "^1.7.9",
-    "electron-builder": "^19.37.2",
+    "electron-builder": "^19.42.1",
     "wine": "^1.8.6"
   },
   "build": {
@@ -40,6 +40,7 @@
     "dialogs": "^1.1.17",
     "electron-config": "^0.2.1",
     "electron-regedit": "^1.0.6",
+    "electron-screenshot-app": "^4.0.3",
     "electron-simple-updater": "^1.2.2",
     "jquery": "^3.2.1"
   }

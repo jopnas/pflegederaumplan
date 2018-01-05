@@ -5,10 +5,10 @@ const {ProgId, ShellOption, Regedit} = require('electron-regedit')
 
 new ProgId({
    description: 'pflege.de Raumplan',
-   icon: 'icon.ico',
+   icon: 'pflegefile.ico',
    extensions: ['pflegede'],
    shell: [
-       new ShellOption({verb: ShellOption.OPEN}),
+       new ShellOption({verb: ShellOption.OPEN, action: 'Mit pflege.de Raumplan öffnen', icon: 'pflegefile.ico'}),
        //new ShellOption({verb: ShellOption.EDIT, args: ['--edit']}),
        //new ShellOption({verb: ShellOption.PRINT, args: ['--print']})
    ]

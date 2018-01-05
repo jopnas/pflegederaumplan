@@ -3,6 +3,8 @@ const {app, BrowserWindow, dialog} = require('electron').remote;
 // Filesystem
 var fs = require('fs');
 
+var screenshot = require('electron-screenshot-app');
+
 // promts, confirms, etc.
 const Dialogs = require('dialogs');
 var dialogs   = Dialogs();
@@ -77,6 +79,19 @@ $(function(){
             break;
           case 'settings':
             base.openLayer('settings');
+            break;
+          case 'screenshot':
+            screenshot({
+              url: 'http://sassdoc.com',
+              width: 1920,
+              height: 1080
+            },
+            function(err, image){
+              // image.data is a Node Buffer 
+              // image.size contains width and height 
+              // image.devicePixelRatio will contain window.devicePixelRatio 
+              console.log('todo: screenshot');              
+            });
             break;
         }
       });
