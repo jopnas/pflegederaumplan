@@ -8,9 +8,10 @@ new ProgId({
    icon: 'pflegefile.ico',
    extensions: ['pflegede'],
    shell: [
-       new ShellOption({verb: ShellOption.OPEN, action: 'Mit pflege.de Raumplan öffnen', icon: 'pflegefile.ico'}),
-       //new ShellOption({verb: ShellOption.EDIT, args: ['--edit']}),
-       //new ShellOption({verb: ShellOption.PRINT, args: ['--print']})
+       new ShellOption({
+          verb: ShellOption.OPEN, 
+          action: 'Mit pflege.de Raumplan öffnen'
+       })
    ]
 })
 
